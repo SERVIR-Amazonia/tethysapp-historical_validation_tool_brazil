@@ -27,22 +27,23 @@ import datetime as dt
 
 # Base
 import io
-import os
-from dotenv import load_dotenv
+
+# App settings
+from .app import HistoricalValidationToolBrazil as app
+
 
 
 ####################################################################################################
 ##                                       STATUS VARIABLES                                         ##
 ####################################################################################################
-
+ 
 # Import enviromental variables 
-load_dotenv()
-DB_USER = os.getenv('DB_USER')
-DB_PASS = os.getenv('DB_PASS')
-DB_NAME = os.getenv('DB_NAME')
+DB_USER = app.get_custom_setting('DB_USER')
+DB_PASS = app.get_custom_setting('DB_PASS')
+DB_NAME = app.get_custom_setting('DB_NAME')
+
 
 # Generate the conection token
-global tokencon
 tokencon = "postgresql+psycopg2://{0}:{1}@localhost:5432/{2}".format(DB_USER, DB_PASS, DB_NAME)
 
 
